@@ -12,11 +12,7 @@ export default class Cart {
     }
 
     totalPrice(): number {
-        let total: number = 0;
-        this.items.forEach(el => {
-            total += el.price;
-        });
-        return total;
+        return this.items.reduce((total, element) => total + element.price, 0);
     }
 
     discountPrice(discount: number): number {
@@ -25,15 +21,9 @@ export default class Cart {
 
     delete(id: number): void {
 
-        let index: number = this.items.findIndex((iteam: Buyable): boolean => iteam.id === id);
+        let index = this.items.findIndex((iteam: Buyable) => iteam.id === id);
         if (index !== -1) {
             this._items.splice(index, 1);
         }
     }
-
-
-
-
-
-
 }
